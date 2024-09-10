@@ -1,0 +1,22 @@
+{
+  "name": "nodep",
+  "version": "1.0.0",
+  "description": "Simple node project with express",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "keywords": [],
+  "author": "Mohammad Wahid",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
