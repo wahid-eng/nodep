@@ -2,8 +2,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import connectDB from './config/db.js';
-import userRoutes from './routes/userRoutes.js'
-import authMiddleware from './middlewares/authMiddleware.js';
+import apiRoutes from './routes/api.js'
 
 // load environment variables from .env
 dotenv.config();
@@ -18,10 +17,9 @@ connectDB();
 // define middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-// app.use(authMiddleware)
 
 // application routes
-app.use('/api/users', userRoutes);
+app.use('/api', apiRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello from app');

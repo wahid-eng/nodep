@@ -2,12 +2,14 @@ import jwt from "jsonwebtoken";
 
 const authMiddleware = (req, res, next) => {
   // get auth token from header
-  const token = req.header('Authorization');
+  const authHeader = req.header('Authorization');
   
   // check token exist
-  if( ! token ) {
-    return res.status(401).json({ message: 'No token, authorization denied' })
+  if( ! authHeader || ! authHeader.startsWith('Bearer ') ) {
+    return res.status(401).json({ message: 'Unauthorized' })
   }
+
+  const token = authHeader.split(' ')[1];
 
   // verify token
   try {
@@ -15,7 +17,7 @@ const authMiddleware = (req, res, next) => {
     req.user = decode.user;
     next();
   } catch(error) {
-    res.status(401).json({ message: 'Token is not valid' });
+    res.status(401).json({ message: 'Unauthorized' });
   }
 }
 
